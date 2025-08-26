@@ -151,7 +151,7 @@ fn main() -> anyhow::Result<()> {
         BackendType::Interp => {
             let ppc_early_on = custom_kernel.is_some() && enable_ppc_hle;
             Builder::new().name("EmuThread".to_owned()).spawn(move || {
-                let mut back = InterpBackend::new(emu_bus, custom_kernel, ppc_early_on, false);
+                let mut back = InterpBackend::new(emu_bus, custom_kernel, ppc_early_on, true);
                 if let Err(reason) = back.run() {
                     println!("InterpBackend returned an Err: {reason}");
                 };
